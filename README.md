@@ -2,12 +2,6 @@
 
 _Prueba de intellygence App Factory realizada en php y React js_
 
-## Pre-requisitos
-
-_Que cosas necesitas para instalar el software_
-
-* ---
-
 ## Instalacion
 
 _Paso a paso que debes ejecutar para tener un entorno de desarrollo ejecutandose_
