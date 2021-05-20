@@ -18,6 +18,21 @@ _Paso a paso que debes ejecutar para tener un entorno de desarrollo ejecutandose
 npm i
 ```
 
+
+## Configuracion
+
+* Url-back
+
+
+En el archivo src/config/configUrl.js agregar/cambiar la url del back
+
+* Ejemplo
+
+```
+base_url: "http://localhost/",
+```
+
+
 ## Arrar aplicacion
 
 _Como poner en marcha la aplicacion_
@@ -31,6 +46,7 @@ npm start
 
 * React js
 * Axios
+* Creative Tim Template
 
 ## Versionado 
 
