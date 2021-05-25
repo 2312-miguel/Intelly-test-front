@@ -15,8 +15,6 @@ const FormAssets = ({ id, afterSave, update, handleClose }) => {
     value: "",
     name: "",
     description: "",
-    name_business: "",
-    date_register: "",
     image: "",
   });
   const SwaContentl = withReactContent(Swal);
@@ -25,14 +23,14 @@ const FormAssets = ({ id, afterSave, update, handleClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (update) {
-      updateAsset();
+      updateAsset(e.target);
     } else {
-      createAsset();
+      createAsset(e.target);
     }
   };
 
-  const createAsset = async () => {
-    const result = await assetsCreate(formData).then((response) => response);
+  const createAsset = async (data) => {
+    const result = await assetsCreate(data).then((response) => response);
     if (result) {
       SwaContentl.fire({
         title: "Felicitaciones",
@@ -46,8 +44,8 @@ const FormAssets = ({ id, afterSave, update, handleClose }) => {
     }
   };
 
-  const updateAsset = async () => {
-    const result = await assetsEdit(formData).then((response) => response);
+  const updateAsset = async (data) => {
+    const result = await assetsEdit(data, id).then((response) => response);
     if (result.status) {
       SwaContentl.fire({
         title: "Felicitaciones",
@@ -146,42 +144,12 @@ const FormAssets = ({ id, afterSave, update, handleClose }) => {
           onChange={handleInput}
           variant="outlined"
           margin="normal"
-          required
-          fullWidth
-          id="name_business"
-          label="Nombre de la Empresa que registra"
-          name="name_business"
-          value={formData.name_business}
-          InputLabelProps={{
-            shrink: inputLabelShrink,
-          }}
-          autoFocus
-        />
-        <TextField
-          onChange={handleInput}
-          variant="outlined"
-          margin="normal"
-          required
-          fullWidth
-          name="date_register"
-          value={formData.date_register}
-          label="Fecha de Registro del Activo"
-          type="date"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          id="date_register"
-        />
-        <TextField
-          onChange={handleInput}
-          variant="outlined"
-          margin="normal"
           fullWidth
           name="image"
-          value={formData.image}
           label="image"
           type="file"
           id="image"
+          required={update ? false : true}
           InputLabelProps={{
             shrink: true,
           }}

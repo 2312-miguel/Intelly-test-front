@@ -23,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     backgroundColor: theme.palette.background.paper,
   },
+  image: {
+    width: "50%",
+    marginLeft: "35%",
+  },
 }));
 
 const AssetInfo = ({ id }) => {
@@ -83,6 +87,17 @@ const AssetInfo = ({ id }) => {
             </ListItem>
           );
         })}
+        <ListItem>
+          <ListItemText
+            primary={"Imagen"}
+            secondary={
+              <img
+                className={classes.image}
+                src={`data:image/png;base64,${data.image}`}
+              />
+            }
+          />
+        </ListItem>
       </List>
     </>
   );
