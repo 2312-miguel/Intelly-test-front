@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Rating } from "@material-ui/lab";
-import {
-  DataGrid,
-  getGridNumericColumnOperators,
-} from "@material-ui/data-grid";
+import { DataGrid } from "@material-ui/data-grid";
 import { getAssets } from "services/assets/requests.assets";
 import { tableAssetStyles } from "./styles";
 import AssetView from "components/Assets/AssetView";
@@ -47,6 +44,7 @@ const filterModel = {
 
 export default function AssetList() {
   const [dataAssets, setDataAssets] = useState([]);
+  const [pageSizes, setPageSizes] = useState(25);
   const getAssetsAll = async () => {
     await getAssets().then((response) => setDataAssets(response));
   };
@@ -79,21 +77,22 @@ export default function AssetList() {
     const ratingColumn = columns.find((column) => column.field === "rating");
     const ratingColIndex = columns.findIndex((col) => col.field === "rating");
 
-    const ratingFilterOperators = getGridNumericColumnOperators().map(
-      (operator) => ({
-        ...operator,
-        InputComponent: RatingInputValue,
-      })
-    );
-
     columns[ratingColIndex] = {
       ...ratingColumn,
-      filterOperators: ratingFilterOperators,
     };
   }
   return (
     <div style={{ height: 579, width: "100%" }}>
-      <DataGrid rows={dataAssets} columns={columns} filterModel={filterModel} />
+      <DataGrid
+        rows={dataAssets}
+        columns={columns}
+        filterModel={filterModel}
+        onPageSizeChange={(GridPageChangeParamsGridPageChangeParams) =>
+          setPageSizes(GridPageChangeParamsGridPageChangeParams.pageSize)
+        }
+        rowsPerPageOptions={[25, 50, 100]}
+        pageSize={pageSizes}
+      />
     </div>
   );
 }
