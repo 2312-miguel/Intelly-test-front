@@ -24,11 +24,6 @@ export default function Login() {
   const initLogin = async () => {
     await login(formData).then((response) => console.log(response));
 
-    /* console.log(response);
-
-    if (response.error) {
-      Swal.fire("Error", "Datos incalidos", "success");
-    } */
     history.push("/admin/assets/");
   };
 
