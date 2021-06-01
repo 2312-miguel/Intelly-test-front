@@ -1,5 +1,5 @@
 const config = {
-  base_url: "http://local.intellytest/",
+  base_url: "http://activosqr.intellygence.net.co/",
 };
 
 export default config;
